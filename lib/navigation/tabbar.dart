@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../screen/home.dart';
 import '../screen/library.dart';
-import '../screen/profile.dart';
 import '../screen/search.dart';
 
 // void main() {
@@ -21,15 +20,18 @@ class _TabbarState extends State<Tabbar>{
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.transparent.withOpacity(0.5),
         currentIndex: selectedTab,
         onTap: (index) {
           setState(() {
             selectedTab = index;
           });
         },
-        items:  const [
+        items:   [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+            ),
             label: "Home",
           ),
           BottomNavigationBarItem(
@@ -37,21 +39,17 @@ class _TabbarState extends State<Tabbar>{
             label: "Search",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.library_music),
+            icon: Icon(Icons.library_music_outlined),
             label: "Your Library",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Profile",
-          ),
         ],
+
       ),
         body: Stack(
           children: [
             renderView(0, HomeView()),
             renderView(1, SearchView()),
             renderView(2, LibraryView()),
-            renderView(3, ProfileView()),
           ],
         )
       // body: HomeView(),

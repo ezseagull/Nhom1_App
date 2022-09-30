@@ -46,7 +46,7 @@ class _HomeView extends State<HomeView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Good evening", style: Theme.of(context).textTheme.headline6,),
+                        Text("Good afternoon", style: Theme.of(context).textTheme.headline6,),
                         Row(
                           children: [
                             Icon(Icons.notifications_outlined),

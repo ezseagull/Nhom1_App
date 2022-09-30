@@ -35,6 +35,8 @@ dependencies:
   flutter_localizations: # Add this line
       sdk: flutter # Add this line
   intl: ^0.17.0
+  font_awesome_flutter:
+  carousel_slider:
   shared_preferences: ^2.0.13
 
   # The following adds the Cupertino Icons font to your application.

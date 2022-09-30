@@ -9,8 +9,10 @@ class _LibraryViewState extends State<LibraryView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("Library Works"),
+      body: SingleChildScrollView(
+        child: Column(
+
+        ),
       ),
     );
   }

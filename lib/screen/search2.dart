@@ -11,19 +11,36 @@ class _SearchView2State extends State<SearchView2> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
+        alignment: Alignment.topLeft,
         children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * .46,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.white.withOpacity(0.4),
+                      Colors.white.withOpacity(0),
+                    ])
+            ),
+          ),
           SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: SafeArea(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 25.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
                           height: 35.0,
-                          width: 280.0,
+                          width: 260,
                           decoration: BoxDecoration(
                             color: Color(0xff282828),
                             borderRadius: BorderRadius.circular(8.0),
@@ -47,14 +64,19 @@ class _SearchView2State extends State<SearchView2> {
                             ),
                           ),
                         ),
-                        MaterialButton(
-                          child: Text(
-                            "Cancel",
-                          ),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
+                        SizedBox(width: 3,),
+                        Row(
+                          children: [
+                            MaterialButton(
+                              child: Text(
+                                "Cancel",
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        )
                       ],
                     )
                   ),

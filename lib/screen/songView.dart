@@ -15,78 +15,86 @@ class _SongViewState extends State<SongView> {
         children: [
           SingleChildScrollView(
             physics: BouncingScrollPhysics(),
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             child: SafeArea(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        icon: Icon(
-                          Icons.keyboard_arrow_down,
-                          size: 30.0,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            Icons.keyboard_arrow_down,
+                            size: 30.0,
+                          ),
+                          onPressed: () {},
                         ),
-                        onPressed: () {},
-                      ),
-                      Text(
-                        "PLAYING FROM PLAYLIST",
-                        style: TextStyle(
-                          fontSize: 15.0,
+                        Text(
+                          "PLAYING FROM PLAYLIST",
+                          style: TextStyle(
+                            fontSize: 15.0,
+                          ),
                         ),
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.more_horiz,
-                          size: 30.0,
+                        IconButton(
+                          icon: Icon(
+                            Icons.more_horiz,
+                            size: 30.0,
+                          ),
+                          onPressed: () {},
                         ),
-                        onPressed: () {},
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   SizedBox(height: 35.0),
-                  Container(
-                    height: 300.0,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/album18.jpg"),
-                        fit: BoxFit.cover,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                    child: Container(
+                      height: 300.0,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/album18.jpg"),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(height: 20.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "You Belong With Me",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w500,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "You Belong With Me",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 5.0),
-                          Text(
-                            "Taylor Swift",
-                            style: TextStyle(
-                              fontSize: 14.0,
+                            SizedBox(height: 5.0),
+                            Text(
+                              "Taylor Swift",
+                              style: TextStyle(
+                                fontSize: 14.0,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.favorite_border,
-                          size: 30.0,
+                          ],
                         ),
-                        onPressed: () {},
-                      ),
-                    ],
+                        IconButton(
+                          icon: Icon(
+                            Icons.favorite_border,
+                            size: 30.0,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 10.0),
                   Container(
@@ -176,17 +184,10 @@ class _SongViewState extends State<SongView> {
                         ),
                         onPressed: () {},
                       ),
-                      SizedBox(width: 130.0),
+                      SizedBox(width: 220.0),
                       IconButton(
                         icon: Icon(
                           Icons.share,
-                          size: 20.0,
-                        ),
-                        onPressed: () {},
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.dehaze,
                           size: 20.0,
                         ),
                         onPressed: () {},
@@ -208,7 +209,7 @@ class _SongViewState extends State<SongView> {
                       ),
                     ),
                     alignment: Alignment(-0.8, -0.9),
-                  )
+                  ),
                 ],
               ),
             ),

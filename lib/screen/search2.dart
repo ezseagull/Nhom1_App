@@ -111,7 +111,7 @@ class _SearchView2State extends State<SearchView2> {
                                   borderRadius: BorderRadius.circular(5.0),
                                 ),
                               ),
-                              SizedBox(height: 60, width: 30),
+                              SizedBox(height: 60, width: 15),
                               Column(
                                 children: [
                                   Container(
@@ -156,7 +156,7 @@ class _SearchView2State extends State<SearchView2> {
                                   borderRadius: BorderRadius.circular(5.0),
                                 ),
                               ),
-                              SizedBox(height: 60, width: 30),
+                              SizedBox(height: 60, width: 15),
                               Column(
                                 children: [
                                   Container(
@@ -201,7 +201,7 @@ class _SearchView2State extends State<SearchView2> {
                                   borderRadius: BorderRadius.circular(5.0),
                                 ),
                               ),
-                              SizedBox(height: 60, width: 30),
+                              SizedBox(height: 60, width: 15),
                               Column(
                                 children: [
                                   Container(
@@ -246,7 +246,7 @@ class _SearchView2State extends State<SearchView2> {
                                   borderRadius: BorderRadius.circular(5.0),
                                 ),
                               ),
-                              SizedBox(height: 60, width: 30),
+                              SizedBox(height: 60, width: 15),
                               Column(
                                 children: [
                                   Container(

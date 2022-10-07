@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/screen/albumView.dart';
 
 class AlbumCard extends StatelessWidget{
   final Image? image;
@@ -17,10 +18,9 @@ class AlbumCard extends StatelessWidget{
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) => ),
+        Navigator.push(context, MaterialPageRoute(
+          builder: ((context) => AlbumView(image: AssetImage("assets/images/album10.jpg"))),
+        ));
       },
       child: Padding(
         padding: EdgeInsets.fromLTRB(0, 0, 16, 0),

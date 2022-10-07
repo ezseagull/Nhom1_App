@@ -3,7 +3,7 @@ import 'package:untitled/json/songs_json.dart';
 import '../card/album_card.dart';
 import '../card/albumcard1.dart';
 import '../theme/colors.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 class HomeView extends StatefulWidget {
   @override
@@ -55,52 +55,55 @@ class _HomeView extends State<HomeView> {
                             SizedBox(width: 20),
                             Icon(Icons.settings),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
                   SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20, top: 20),
-                      child: Row(
-                        children: List.generate(song_type_1.length, (index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 10),
-                            child: GestureDetector(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: 70,
-                                    height: 20,
-                                    child: Text(
-                                      song_type_1[index],
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 13,
-                                        color:  activeMenu1 == index ? black : white,
-                                      ),
-                                    ),
-                                    decoration: BoxDecoration(
-                                        color: activeMenu1 == index ? primary : grey,
-                                        borderRadius: BorderRadius.circular(30)),
-                                  )
-                                ],
-                              ),
-                              onTap: () {
-                                setState(() {
-                                  activeMenu1 = index;
-                                });
-                              },
+                    physics: BouncingScrollPhysics(),
+                    child: SafeArea(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+                            child: Row(
+                              children: [
+                                Container(
+                                  alignment: Alignment.center,
+                                  height: 30,
+                                  width: 80,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25),
+                                    color: Colors.black26,
+                                  ),
+                                  child: Text("Music",style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400
+                                  ),),
+                                ),
+                                SizedBox(width: 10,),
+                                Container(
+                                  alignment: Alignment.center,
+                                  height: 30,
+                                  width: 130,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25),
+                                    color: Colors.black26,
+                                  ),
+                                  child: Text("Podcasts & Shows",style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400
+                                  ),),
+                                ),
+                              ],
                             ),
-                          );
-                        }),
+                          )
+
+                        ],
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(16),
@@ -290,14 +293,16 @@ class _HomeView extends State<HomeView> {
                           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Image(
-                              image: AssetImage("assets/images/album14.jpg"),
+                              image: AssetImage("assets/images/album17.jpg"),
                               height: 60,
                               width: 60,
                               fit: BoxFit.cover,
                             ),
                             SizedBox(width: 8),
                             Container(
-                                    padding: EdgeInsets.all(5), child: Column(
+                                padding: EdgeInsets.all(5),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   // mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(

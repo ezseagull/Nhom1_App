@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/screen/songView.dart';
 
 class AlbumCard1 extends StatelessWidget{
   final Image? image;
@@ -17,10 +18,9 @@ class AlbumCard1 extends StatelessWidget{
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) => ),
+        Navigator.push(context, MaterialPageRoute(
+          builder: ((context) => SongView()),
+        ));
       },
       child: Padding(
         padding: EdgeInsets.fromLTRB(0, 0, 16, 0),

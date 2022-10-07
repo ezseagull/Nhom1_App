@@ -66,19 +66,18 @@ class _LibraryState extends State<LibraryView> {
                   ),
                   Row(
                     children: [
-                      SizedBox(width: 25,),
+                      SizedBox(width: 10,),
                       Container(
                         alignment: Alignment.center,
                         height: 30,
-                        width: 100,
+                        width: 80,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             border: Border.all(width: 1,color: Colors.white)
                         ),
                         child: Text("Playlist",style: TextStyle(
                             color: Colors.white,
-                            fontSize: 15,
-                            letterSpacing: 2,
+                            fontSize: 13,
                             fontWeight: FontWeight.w400
                         ),),
                       ),
@@ -86,15 +85,14 @@ class _LibraryState extends State<LibraryView> {
                       Container(
                         alignment: Alignment.center,
                         height: 30,
-                        width: 100,
+                        width: 80,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             border: Border.all(width: 1,color: Colors.white)
                         ),
                         child: Text("Artist",style: TextStyle(
                             color: Colors.white,
-                            fontSize: 15,
-                            letterSpacing: 2,
+                            fontSize: 13,
                             fontWeight: FontWeight.w400
                         ),),
                       ),
@@ -103,19 +101,19 @@ class _LibraryState extends State<LibraryView> {
                   SizedBox(height: 25,),
                   Row(
                     children: [
-                      SizedBox(width: 25,),
+                      SizedBox(width: 10,),
                       Transform.rotate(
                         angle: 90 * pi /180,
                         child: Icon(Icons.compare_arrows_sharp,
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(width: 15,),
+                      SizedBox(width: 10,),
                       Text("Recently Played",style: TextStyle(
                           color: Colors.white,
                           fontSize: 15
                       ),),
-                      SizedBox(width: 170,),
+                      SizedBox(width: 195,),
                       Icon(FontAwesomeIcons.listAlt,color: Colors.white,)
                     ],
                   ),
@@ -138,8 +136,8 @@ class _LibraryState extends State<LibraryView> {
         radius: 25,
         backgroundImage: AssetImage(imgurl),
       ),
-      title: Text(title,style: TextStyle(color: Colors.white,fontSize: 18,fontStyle: FontStyle.italic),),
-      subtitle: Text(subtit,style: TextStyle(color: Colors.white54,fontSize: 13,fontStyle: FontStyle.italic),),
+      title: Text(title,style: TextStyle(color: Colors.white,fontSize: 18,),),
+      subtitle: Text(subtit,style: TextStyle(color: Colors.white54,fontSize: 13,),),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class  LibraryView extends StatefulWidget {
   @override
   _LibraryState createState() => _LibraryState();
@@ -114,7 +114,7 @@ class _LibraryState extends State<LibraryView> {
                           fontSize: 15
                       ),),
                       SizedBox(width: 195,),
-                      Icon(FontAwesomeIcons.listAlt,color: Colors.white,)
+                      // Icon(FontAwesomeIcons.listAlt,color: Colors.white,)
                     ],
                   ),
                   SizedBox(height: 15,),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/screen/albumView.dart';
 
@@ -18,14 +17,20 @@ class AlbumCard extends StatelessWidget{
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: ((context) => AlbumView(image: AssetImage("assets/images/album10.jpg"))),
-        ));
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AlbumView(
+              image: image,
+            ),
+          ),
+        );
       },
       child: Padding(
         padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
         child: Container(
           width: size,
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -35,7 +40,7 @@ class AlbumCard extends StatelessWidget{
                 label!,
                 // style: ,
                 overflow: TextOverflow.ellipsis,
-                maxLines: 2,
+                maxLines: 1,
               )
             ],
           ),

@@ -1,17 +1,22 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/screen/songView.dart';
 import '../card/album_card.dart';
+import '../services/api.dart';
 
 class AlbumView extends StatefulWidget {
-  final ImageProvider image;
-  const AlbumView({Key? key, required this.image}) : super(key: key);
+  final Image? image;
+  AlbumView({
+    Key? key,
+    this.image
+  }) : super(key: key);
   @override
   _AlbumViewState createState() => _AlbumViewState();
 }
 
 class _AlbumViewState extends State<AlbumView> {
-  late ScrollController scrollController;
+  ScrollController? scrollController;
   double imageSize = 0;
   double initialSize = 240;
   double containerHeight = 500;
@@ -24,21 +29,21 @@ class _AlbumViewState extends State<AlbumView> {
     imageSize = initialSize;
     scrollController = ScrollController()
       ..addListener(() {
-        imageSize = initialSize - scrollController.offset;
+        imageSize = initialSize - scrollController!.offset;
         if (imageSize < 0) {
           imageSize = 0;
         }
-        containerHeight = containerinitalHeight - scrollController.offset;
+        containerHeight = containerinitalHeight - scrollController!.offset;
         if (containerHeight < 0) {
           containerHeight = 0;
         }
         imageOpacity = imageSize / initialSize;
-        if (scrollController.offset > 224) {
+        if (scrollController!.offset > 224) {
           showTopBar = true;
         } else {
           showTopBar = false;
         }
-        print(scrollController.offset);
+        print(scrollController!.offset);
         setState(() {});
       });
     super.initState();
@@ -49,14 +54,14 @@ class _AlbumViewState extends State<AlbumView> {
     final cardSize = MediaQuery.of(context).size.width / 2 - 32;
     return Scaffold(
       body: Stack(
+
         children: [
           Container(
-            height: containerHeight,
+            height: containerHeight + 300,
             width: MediaQuery.of(context).size.width,
-            alignment: Alignment.center,
-            color: Colors.blueGrey,
+            alignment: Alignment.topCenter,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Opacity(
                   opacity: imageOpacity.clamp(0, 1.0),
@@ -71,12 +76,7 @@ class _AlbumViewState extends State<AlbumView> {
                         )
                       ],
                     ),
-                    child: Image(
-                      image: widget.image,
-                      width: imageSize,
-                      height: imageSize,
-                      fit: BoxFit.cover,
-                    ),
+                    child: widget.image!,
                   ),
                 ),
                 SizedBox(
@@ -108,15 +108,17 @@ class _AlbumViewState extends State<AlbumView> {
                       padding: const EdgeInsets.only(top: 40),
                       child: Column(
                         children: [
-                          SizedBox(height: initialSize + 32),
+                          SizedBox(height: initialSize + 60),
                           Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Đông tới Tây, đây là ca khúc thịnh hành",
+                                  "Đông tới Tây, đây là ca khúc thịnh hành nhất trong thời gian gần đây. Ảnh bìa: hgh",
                                   style: Theme.of(context).textTheme.caption,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
                                 ),
                                 SizedBox(height: 8),
                                 Row(
@@ -300,8 +302,7 @@ class _AlbumViewState extends State<AlbumView> {
                           ),
                           Positioned(
                             right: 0,
-                            bottom:
-                            80 - containerHeight.clamp(120.0, double.infinity),
+                            bottom: 80 - containerHeight.clamp(120.0, double.infinity),
                             child: Stack(
                               alignment: Alignment.bottomRight,
                               children: [

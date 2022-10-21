@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 import 'navigation/tabbar.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   State<StatefulWidget> createState() => _MyAppState();
 }
@@ -19,7 +20,7 @@ class _MyAppState extends State<MyApp> {
       darkTheme: ThemeData(
         scaffoldBackgroundColor: Colors.black,
         brightness: Brightness.dark,
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Colors.white10,
           type: BottomNavigationBarType.fixed,
           selectedLabelStyle: TextStyle(

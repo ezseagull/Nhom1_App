@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/screen/songView.dart';
 
 class SongCard extends StatelessWidget{
   final Image? image;
   final String? label;
+  final String? nameArtist;
   final String? songurl;
   final Function? onTap;
   final double size;
@@ -12,6 +12,7 @@ class SongCard extends StatelessWidget{
     Key? key,
     this.image,
     this.label,
+    this.nameArtist,
     this.songurl,
     this.onTap,
     this.size = 120,
@@ -23,22 +24,24 @@ class SongCard extends StatelessWidget{
         Navigator.push(context, MaterialPageRoute(
           builder: ((context) => SongView(
             image: image,
+            lable: label,
+            nameArtist: nameArtist,
             songurl: songurl,
           )),
         ));
       },
       child: Padding(
-        padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
-        child: Container(
+        padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
+        child: SizedBox(
           width: size,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               image!,
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text(
                 label!,
-                style: TextStyle(
+                style: const TextStyle(
                   // fontWeight: FontWeight.w200,
                   color: Colors.white54,
                 ),

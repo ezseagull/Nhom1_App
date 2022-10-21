@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class  LibraryView extends StatefulWidget {
+  const LibraryView({super.key});
+
   @override
   _LibraryState createState() => _LibraryState();
 }
@@ -27,15 +29,15 @@ class _LibraryState extends State<LibraryView> {
             ),
           ),
           SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: SafeArea(
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 100,
                     width: double.infinity,
                     child: Row(
-                      children: [
+                      children: const [
                         SizedBox(width: 10,),
                         CircleAvatar(
                           radius: 25,
@@ -66,7 +68,7 @@ class _LibraryState extends State<LibraryView> {
                   ),
                   Row(
                     children: [
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       Container(
                         alignment: Alignment.center,
                         height: 30,
@@ -75,13 +77,13 @@ class _LibraryState extends State<LibraryView> {
                             borderRadius: BorderRadius.circular(25),
                             border: Border.all(width: 1,color: Colors.white)
                         ),
-                        child: Text("Playlist",style: TextStyle(
+                        child: const Text("Playlist",style: TextStyle(
                             color: Colors.white,
                             fontSize: 13,
                             fontWeight: FontWeight.w400
                         ),),
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       Container(
                         alignment: Alignment.center,
                         height: 30,
@@ -90,7 +92,7 @@ class _LibraryState extends State<LibraryView> {
                             borderRadius: BorderRadius.circular(25),
                             border: Border.all(width: 1,color: Colors.white)
                         ),
-                        child: Text("Artist",style: TextStyle(
+                        child: const Text("Artist",style: TextStyle(
                             color: Colors.white,
                             fontSize: 13,
                             fontWeight: FontWeight.w400
@@ -98,28 +100,29 @@ class _LibraryState extends State<LibraryView> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 25,),
+                  const SizedBox(height: 25,),
                   Row(
                     children: [
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       Transform.rotate(
                         angle: 90 * pi /180,
-                        child: Icon(Icons.compare_arrows_sharp,
+                        child: const Icon(Icons.compare_arrows_sharp,
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(width: 10,),
-                      Text("Recently Played",style: TextStyle(
+                      const SizedBox(width: 10,),
+                      const Text("Recently Played",style: TextStyle(
                           color: Colors.white,
                           fontSize: 15
                       ),),
-                      SizedBox(width: 195,),
+                      const SizedBox(width: 195,),
                       // Icon(FontAwesomeIcons.listAlt,color: Colors.white,)
                     ],
                   ),
-                  SizedBox(height: 15,),
+                  const SizedBox(height: 15,),
                   tile("Liked Songs","assets/images/like.jfif","Playlist 52 Songs"),
                   tile("On Repeat","assets/images/onrepeat.jfif","Playlist for u"),
+                  tile("Weekly Discover","assets/images/weekly.jfif","Weekly discover"),
                   tile("Weekly Discover","assets/images/weekly.jfif","Weekly discover"),
                 ],
               ),
@@ -136,8 +139,8 @@ class _LibraryState extends State<LibraryView> {
         radius: 25,
         backgroundImage: AssetImage(imgurl),
       ),
-      title: Text(title,style: TextStyle(color: Colors.white,fontSize: 18,),),
-      subtitle: Text(subtit,style: TextStyle(color: Colors.white54,fontSize: 13,),),
+      title: Text(title,style: const TextStyle(color: Colors.white,fontSize: 18,),),
+      subtitle: Text(subtit,style: const TextStyle(color: Colors.white54,fontSize: 13,),),
     );
   }
 }

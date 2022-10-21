@@ -1,4 +1,4 @@
-import '../models/songs.dart';
+import '../models/data.dart';
 import 'package:http/http.dart' as http;
 class API {
   getSongFromApi() async{

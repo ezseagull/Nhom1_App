@@ -2,12 +2,21 @@ import 'dart:ui';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/models/data.dart';
 
 class SongView extends StatefulWidget {
+  final Song? song;
   final Image? image;
   final String? songurl;
+  final String? lable;
+  final String? nameArtist;
   // SongIn
-  SongView({Key? key, this.image, this.songurl}) : super(key: key);
+  const SongView({Key? key,
+    this.song,
+    this.image,
+    this.songurl,
+    this.lable,
+    this.nameArtist}) : super(key: key);
 
   @override
   State<SongView> createState() => _SongViewState();
@@ -81,24 +90,31 @@ class _SongViewState extends State<SongView> {
       body: Stack(
         children: [
           Container(
-            constraints: BoxConstraints.expand(),
-            height: 300.0,
-            width: 300.0,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/album10.jpg"),
-                fit: BoxFit.cover,
+            constraints: const BoxConstraints.expand(),
+            height: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width,
+            // decoration: BoxDecoration(
+            //   image: DecorationImage(
+            //     image: AssetImage("assets/images/album3.jpg"),
+            //     fit: BoxFit.cover,
+            //   ),
+            // ),
+            child: Expanded(
+              child: Column(
+                children: [
+                  Expanded(flex: 10,child: widget.image!),
+                  BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 28, sigmaY: 28),
+                    child: Container(
+                      color: Colors.black.withOpacity(0.6),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 28, sigmaY: 28),
-              child: Container(
-                color: Colors.black.withOpacity(0.6),
-              ),
-            ),
+            )
           ),
           SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: SafeArea(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -109,21 +125,23 @@ class _SongViewState extends State<SongView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.keyboard_arrow_down,
                             size: 30.0,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            
+                          },
                         ),
-                        Text(
+                        const Text(
                           "Pop Mix",
                           style: TextStyle(
-                            fontSize: 13.0,
+                            fontSize: 16.0,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.more_horiz,
                             size: 30.0,
                           ),
@@ -132,7 +150,7 @@ class _SongViewState extends State<SongView> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 35.0),
+                  const SizedBox(height: 35.0),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                     child: Container(
@@ -142,7 +160,7 @@ class _SongViewState extends State<SongView> {
                       child:  widget.image,
                     ),
                   ),
-                  SizedBox(height: 40.0),
+                  const SizedBox(height: 30.0),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
                     child: Row(
@@ -151,20 +169,37 @@ class _SongViewState extends State<SongView> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "You Belong With Me",
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w500,
+                            Container(
+                              height: 35,
+                              width: 200,
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                  widget.lable!,
+                                style: const TextStyle(
+                                      fontSize: 20.0,
+
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                maxLines: 2,
                               ),
                             ),
-                            SizedBox(height: 5.0),
                             Text(
-                              "Taylor Swift",
-                              style: TextStyle(
+                              widget.nameArtist!,
+                              style: const TextStyle(
                                 fontSize: 14.0,
                               ),
                             ),
+                            // Container(
+                            //   height: 50,
+                            //   width: 200,
+                            //   alignment: Alignment.topLeft,
+                            //   child: Text(
+                            //     widget.nameArtist!,
+                            //     style: TextStyle(
+                            //       fontSize: 14.0,
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                         // IconButton(
@@ -177,10 +212,11 @@ class _SongViewState extends State<SongView> {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 5,),
                   Column (
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         // height: 30.0,
                         width: MediaQuery.of(context).size.width,
                         child: Slider.adaptive(
@@ -209,7 +245,7 @@ class _SongViewState extends State<SongView> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
+                          SizedBox(
                             width: 50.0,
                             height: 50.0,
                             child: InkWell(
@@ -219,7 +255,7 @@ class _SongViewState extends State<SongView> {
                               onTapUp: (details) {
                                 player.setPlaybackRate(1);
                               },
-                              child: Center(
+                              child: const Center(
                                 child: Icon(
                                     Icons.skip_previous,
                                     size: 60.0,
@@ -227,31 +263,6 @@ class _SongViewState extends State<SongView> {
                               ),
                             ),
                           ),
-                          // Container(
-                          //   margin: EdgeInsets.symmetric(horizontal: 20.0),
-                          //   decoration: BoxDecoration(
-                          //     borderRadius: BorderRadius.circular(60.0),
-                          //     color: Colors.white,
-                          //   ),
-                          //   width: 70.0,
-                          //   height: 70.0,
-                          //   child: InkWell(
-                          //     onTap: () {
-                          //       setState(() {
-                          //         audioPlayerState == PlayerState.playing
-                          //             ? pauseMusic()
-                          //             : playMusic();
-                          //       });
-                          //       },
-                          //
-                          //     child: Center(
-                          //       child: Icon(
-                          //         Icons.skip_previous,
-                          //         size: 60.0,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
                           CircleAvatar(
                             radius: 40,
                             backgroundColor: Colors.white,
@@ -277,7 +288,7 @@ class _SongViewState extends State<SongView> {
                                 },
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             width: 50.0,
                             height: 50.0,
                             child: InkWell(
@@ -287,7 +298,7 @@ class _SongViewState extends State<SongView> {
                               onTapUp: (details) {
                                 player.setPlaybackRate(1);
                               },
-                              child: Center(
+                              child: const Center(
                                 child: Icon(
                                   Icons.skip_next,
                                   color: Colors.white,

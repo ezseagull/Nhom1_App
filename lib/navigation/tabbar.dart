@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:miniplayer/miniplayer.dart';
-
-
 import '../screen/home.dart';
 import '../screen/library.dart';
 import '../screen/search.dart';
-import '../screen/songView.dart';
 
 class Tabbar extends StatefulWidget {
+  const Tabbar({super.key});
+
   @override
   State<StatefulWidget> createState() => _TabbarState();
 }
@@ -29,7 +27,7 @@ class _TabbarState extends State<Tabbar>{
                   selectedTab = index;
                 });
               },
-              items:   [
+              items: const [
                 BottomNavigationBarItem(
                   icon: Icon(
                     Icons.home,
@@ -51,9 +49,9 @@ class _TabbarState extends State<Tabbar>{
         body: Stack(
           children: [
             miniSongPlayer(context),
-            renderView(0, HomeView()),
-            renderView(1, SearchView()),
-            renderView(2, LibraryView()),
+            renderView(0, const HomeView()),
+            renderView(1, const SearchView()),
+            renderView(2, const LibraryView()),
           ],
         )
       // body: HomeView(),
@@ -72,7 +70,7 @@ class _TabbarState extends State<Tabbar>{
   Widget miniSongPlayer(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
     return AnimatedContainer(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 10,
       ),
       decoration: BoxDecoration(
@@ -83,48 +81,94 @@ class _TabbarState extends State<Tabbar>{
       width: deviceSize.width,
       height: 60,
 
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: Column(
         children: [
-          Image(
-            image: AssetImage("assets/images/album17.jpg"),
-            height: 50,
-            width: 50,
-            fit: BoxFit.cover,
-          ),
-          SizedBox(width: 8),
-          Container(
-              padding: EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const Image(
+                image: AssetImage("assets/images/album17.jpg"),
+                height: 50,
+                width: 50,
+                fit: BoxFit.cover,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 5,),
-                  Text(
-                    "Waiting For You",
-                    style: TextStyle(
-                      fontSize: 15,
+              const SizedBox(width: 8),
+              Container(
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      SizedBox(height: 5,),
+                      Text(
+                        "Waiting For You",
+                        style: TextStyle(
+                          fontSize: 15,
 
-                    ),
-                  ),
-                  SizedBox(height: 5,),
-                  Text(
-                      "MONO, Onionn",
-                      style: TextStyle(
-                        // fontWeight: FontWeight.w200,
-                        color: Colors.white54,
-                      )
-                  ),
-                ],
-              )),
-          SizedBox(width: 120,),
-          Icon(Icons.bluetooth_connected, color: Colors.white),
-          SizedBox(width: 10,),
-          Icon(Icons.play_arrow, color: Colors.white),
+                        ),
+                      ),
+                      SizedBox(height: 5,),
+                      Text(
+                          "MONO, Onionn",
+                          style: TextStyle(
+                            // fontWeight: FontWeight.w200,
+                            color: Colors.white54,
+                          )
+                      ),
+                    ],
+                  )),
+              const SizedBox(width: 120,),
+              const Icon(Icons.bluetooth_connected, color: Colors.white),
+              const SizedBox(width: 10,),
+              const Icon(Icons.play_arrow, color: Colors.white),
+            ],
+          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //   crossAxisAlignment: CrossAxisAlignment.center,
+          //   children: [
+          //     Text(
+          //       Duration(seconds: currentSlider.toInt())
+          //           .toString()
+          //           .split('.')[0]
+          //           .substring(2),
+          //       style: TextStyle(color: Colors.white),
+          //     ),
+          //     Container(
+          //       width: MediaQuery.of(context).size.width - 120,
+          //       child: SliderTheme(
+          //         data: SliderTheme.of(context).copyWith(
+          //           thumbShape: RoundSliderThumbShape(enabledThumbRadius: 4),
+          //           trackShape: RectangularSliderTrackShape(),
+          //           trackHeight: 4,
+          //         ),
+          //         child: Slider(
+          //           value: currentSlider,
+          //           max: widget.song.duration.toDouble(),
+          //           min: 0,
+          //           inactiveColor: Colors.grey[500],
+          //           activeColor: Colors.white,
+          //           onChanged: (val) {
+          //             setState(() {
+          //               currentSlider = val;
+          //             });
+          //           },
+          //         ),
+          //       ),
+          //     ),
+          //     Text(
+          //       Duration(seconds: widget.song.duration)
+          //           .toString()
+          //           .split('.')[0]
+          //           .substring(2),
+          //       style: TextStyle(color: Colors.white),
+          //     )
+          //   ],
+          // )
         ],
-      ),
+      )
     );
 
   }

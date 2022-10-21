@@ -6,6 +6,8 @@ import '../methods/get_greeting.dart';
 
 
 class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
   @override
   _HomeView createState() => _HomeView();
 }
@@ -23,7 +25,7 @@ class _HomeView extends State<HomeView> {
         future: API().getSongFromApi(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasError) {
@@ -49,13 +51,13 @@ class _HomeView extends State<HomeView> {
                   ),
                 ),
                 SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   child: SafeArea(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Row(
@@ -63,7 +65,7 @@ class _HomeView extends State<HomeView> {
                             children: [
                               Text(greeting(), style: Theme.of(context).textTheme.headline6,),
                               Row(
-                                children: [
+                                children: const [
                                   Icon(Icons.notifications_outlined),
                                   SizedBox(width: 20),
                                   Icon(Icons.history),
@@ -75,7 +77,7 @@ class _HomeView extends State<HomeView> {
                           ),
                         ),
                         SingleChildScrollView(
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           child: SafeArea(
                             child: Column(
                               children: [
@@ -91,13 +93,13 @@ class _HomeView extends State<HomeView> {
                                           borderRadius: BorderRadius.circular(25),
                                           color: Colors.black26,
                                         ),
-                                        child: Text("Music",style: TextStyle(
+                                        child: const Text("Music",style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 13,
                                             fontWeight: FontWeight.w400
                                         ),),
                                       ),
-                                      SizedBox(width: 10,),
+                                      const SizedBox(width: 10,),
                                       Container(
                                         alignment: Alignment.center,
                                         height: 30,
@@ -106,7 +108,7 @@ class _HomeView extends State<HomeView> {
                                           borderRadius: BorderRadius.circular(25),
                                           color: Colors.black26,
                                         ),
-                                        child: Text("Podcasts & Shows",style: TextStyle(
+                                        child: const Text("Podcasts & Shows",style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 13,
                                             fontWeight: FontWeight.w400
@@ -126,7 +128,7 @@ class _HomeView extends State<HomeView> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Row(
-                                children: [
+                                children: const [
                                   RowAlbumCard(
                                       label: "Top 50 - Global  ",
                                       image: AssetImage("assets/images/top50.jpg")),
@@ -136,9 +138,9 @@ class _HomeView extends State<HomeView> {
                                       image: AssetImage("assets/images/album1.jpg")),
                                 ],
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Row(
-                                children: [
+                                children: const [
                                   RowAlbumCard(
                                     label:    "Top 50 - Pop      ",
                                     image: AssetImage("assets/images/album2.jpg"),
@@ -150,9 +152,9 @@ class _HomeView extends State<HomeView> {
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Row(
-                                children: [
+                                children: const [
                                   RowAlbumCard(
                                     label: "V - pops              ",
                                     image: AssetImage("assets/images/album9.jpg"),
@@ -179,8 +181,8 @@ class _HomeView extends State<HomeView> {
                             ),
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
-                              physics: BouncingScrollPhysics(),
-                              padding: EdgeInsets.symmetric(
+                              physics: const BouncingScrollPhysics(),
+                              padding: const EdgeInsets.symmetric(
                                 horizontal: 16,
                               ),
                               child: Row(
@@ -192,7 +194,9 @@ class _HomeView extends State<HomeView> {
                                         songData.data[i].album.coverBig,
                                         fit: BoxFit.cover,
                                       ),
-
+                                      // tracklist: songData.data[i].album.tracklist,
+                                      artist:  songData.data[i].artist.name,
+                                      next: songData.next,
                                     ),
                                 ],
                               ),
@@ -206,7 +210,7 @@ class _HomeView extends State<HomeView> {
                             ),
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
-                              physics: BouncingScrollPhysics(),
+                              physics: const BouncingScrollPhysics(),
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 20,
                               ),
@@ -214,11 +218,12 @@ class _HomeView extends State<HomeView> {
                                 children: [
                                   for (var i = 15; i < songData.data.length; i++)
                                     SongCard(
-                                      label: songData.data[i].artist.name,
+                                      label: songData.data[i].album.title,
                                       image: Image.network(
-                                        songData.data[i].artist.pictureBig,
+                                        songData.data[i].artist.pictureXl,
                                       ),
                                       songurl: songData.data[i].preview,
+                                      nameArtist: songData.data[i].artist.name,
                                     ),
                                 ],
                               ),
@@ -232,8 +237,8 @@ class _HomeView extends State<HomeView> {
                             ),
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
-                              physics: BouncingScrollPhysics(),
-                              padding: EdgeInsets.symmetric(
+                              physics: const BouncingScrollPhysics(),
+                              padding: const EdgeInsets.symmetric(
                                 horizontal: 20,
                               ),
                               child: Row(
@@ -249,28 +254,28 @@ class _HomeView extends State<HomeView> {
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
-                              physics: BouncingScrollPhysics(),
-                              padding: EdgeInsets.symmetric(
+                              physics: const BouncingScrollPhysics(),
+                              padding: const EdgeInsets.symmetric(
                                 horizontal: 20,
                               ),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Image(
+                                  const Image(
                                     image: AssetImage("assets/images/album17.jpg"),
                                     height: 60,
                                     width: 60,
                                     fit: BoxFit.cover,
                                   ),
-                                  SizedBox(width: 8),
+                                  const SizedBox(width: 8),
                                   Container(
-                                      padding: EdgeInsets.all(5),
+                                      padding: const EdgeInsets.all(5),
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         // mainAxisAlignment: MainAxisAlignment.start,
@@ -291,21 +296,23 @@ class _HomeView extends State<HomeView> {
                                 ],
                               ),
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
-                              physics: BouncingScrollPhysics(),
-                              padding: EdgeInsets.symmetric(
+                              physics: const BouncingScrollPhysics(),
+                              padding: const EdgeInsets.symmetric(
                                 horizontal: 20,
                               ),
                               child: Row(
                                 children: [
                                   for (var i = 1; i < songData.data.length-20; i++)
                                     SongCard(
-                                      label: songData.data[i].artist.name,
+                                      label: songData.data[i].album.title,
                                       image: Image.network(
                                         songData.data[i].artist.pictureBig,
                                       ),
+                                      songurl: songData.data[i].preview,
+                                      nameArtist: songData.data[i].artist.name,
                                     ),
                                 ],
                               ),
@@ -324,11 +331,12 @@ class _HomeView extends State<HomeView> {
     );
   }
 }
+
 class RowAlbumCard extends StatelessWidget {
   final ImageProvider image;
   final String label;
-  String value = "";
-  RowAlbumCard({
+  final String value = "";
+  const RowAlbumCard({
     Key? key,
     required this.image,
     required this.label,
@@ -357,21 +365,8 @@ class RowAlbumCard extends StatelessWidget {
                   width: 48,
                   fit: BoxFit.cover,
                 ),
-                SizedBox(width: 8,),
+                const SizedBox(width: 8,),
                 Text(label),
-                // MaterialButton(
-                //   child: Text(label),
-                //   onPressed: () {
-                //     TextField(
-                //       onChanged: (text) {
-                //         value = text;
-                //       },
-                //     );
-                //     Navigator.push(context, MaterialPageRoute(
-                //       builder: ((context) => SearchView2()),
-                //     ));
-                //   },
-                // ),
               ],
             ),
           ),
@@ -379,3 +374,40 @@ class RowAlbumCard extends StatelessWidget {
     );
   }
 }
+
+//miniplayer
+// class PlayerHome extends StatefulWidget {
+//   @override
+//   _PlayerHomeState createState() => _PlayerHomeState();
+// }
+
+// class _PlayerHomeState extends State<PlayerHome> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       // onTap: () {
+//       //   Navigator.push(
+//       //       context,
+//       //       PageRouteBuilder(
+//       //           pageBuilder: (context, _, __) => SongView(widget.song)));
+//       // },
+//       child: Container(
+//         height: 130,
+//         padding: EdgeInsets.all(8),
+//         decoration: BoxDecoration(
+//           color: Colors.black,
+//           borderRadius: BorderRadius.only(topRight: Radius.circular(30)),
+//         ),
+//         child: Column(
+//           children: [
+//             Row(
+//               children: [
+//                 Hero(tag: "image", child: child)
+//               ],
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

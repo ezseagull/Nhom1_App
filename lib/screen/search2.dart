@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/api.dart';
-import 'songView.dart';
+import 'songview.dart';
 
 class SearchView2 extends StatefulWidget {
   const SearchView2({super.key});

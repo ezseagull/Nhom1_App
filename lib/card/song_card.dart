@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/screen/songView.dart';
+import 'package:untitled/screen/songview.dart';
 
 class SongCard extends StatelessWidget{
   final Image? image;

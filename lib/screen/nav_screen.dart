@@ -3,7 +3,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:miniplayer/miniplayer.dart';
 // import 'package:untitled/models/data.dart';
-// import 'package:untitled/screen/songView.dart';
+// import 'package:untitled/screen/songview.dart';
 // import 'package:untitled/screen/utils.dart';
 //
 //

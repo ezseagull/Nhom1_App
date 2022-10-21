@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/screen/songView.dart';
+import 'package:untitled/screen/songview.dart';
 import '../card/album_card.dart';
 import '../card/row_card.dart';
 import '../services/api.dart';
@@ -17,7 +17,7 @@ class AlbumView extends StatefulWidget {
     this.next,
   }) : super(key: key);
   @override
-  _AlbumViewState createState() => _AlbumViewState();
+  State<AlbumView> createState() => _AlbumViewState();
 }
 
 class _AlbumViewState extends State<AlbumView> {
@@ -54,18 +54,18 @@ class _AlbumViewState extends State<AlbumView> {
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.green, borderRadius: BorderRadius.circular(5)),
-                        child: const Padding(
-                          padding: EdgeInsets.only(
-                              left: 12, right: 12, top: 8, bottom: 8),
-                          child: Text(
-                            "Subscribe",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //       color: Colors.green, borderRadius: BorderRadius.circular(5)),
+                      //   child: const Padding(
+                      //     padding: EdgeInsets.only(
+                      //         left: 12, right: 12, top: 8, bottom: 8),
+                      //     child: Text(
+                      //       "Subscribe",
+                      //       style: TextStyle(color: Colors.white),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

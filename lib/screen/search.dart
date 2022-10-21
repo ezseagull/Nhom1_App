@@ -6,7 +6,7 @@ class SearchView extends StatefulWidget {
   const SearchView({super.key});
 
   @override
-  _SearchViewState createState() => _SearchViewState();
+  State<SearchView> createState() => _SearchViewState();
 }
 
 class _SearchViewState extends State<SearchView> {
@@ -119,17 +119,17 @@ class _SearchViewState extends State<SearchView> {
                                     )
                                 ),
                                 const SizedBox(height: 10,),
-                                Card_Search(context,"Pod ",Colors.red,"Made ",Colors.green,"assets/images/album19.jfif","assets/images/album20.jfif"),
+                                cardSearch(context,"Pod ",Colors.red,"Made ",Colors.green,"assets/images/album19.jfif","assets/images/album20.jfif"),
                                 const SizedBox(height: 10,),
-                                Card_Search(context,"New ",Colors.orange,"Viet",Colors.yellow,"assets/images/album24.jpg","assets/images/album21.jfif"),
+                                cardSearch(context,"New ",Colors.orange,"Viet",Colors.yellow,"assets/images/album24.jpg","assets/images/album21.jfif"),
                                 const SizedBox(height: 10,),
-                                Card_Search(context,"Pop     ",Colors.purple,"K-pop",Colors.blueAccent,"assets/images/album18.jpg","assets/images/album15.jpg"),
+                                cardSearch(context,"Pop     ",Colors.purple,"K-pop",Colors.blueAccent,"assets/images/album18.jpg","assets/images/album15.jpg"),
                                 const SizedBox(height: 10,),
-                                Card_Search(context,"Chart",Colors.red[200],"Radio",Colors.green[800],"assets/images/album23.jfif","assets/images/album16.jfif"),
+                                cardSearch(context,"Chart",Colors.red[200],"Radio",Colors.green[800],"assets/images/album23.jfif","assets/images/album16.jfif"),
                                 const SizedBox(height: 10,),
-                                Card_Search(context,"Rock",Colors.red,"Indie",Colors.green,"assets/images/album10.jpg","assets/images/album11.jpg"),
+                                cardSearch(context,"Rock",Colors.red,"Indie",Colors.green,"assets/images/album10.jpg","assets/images/album11.jpg"),
                                 const SizedBox(height: 10,),
-                                Card_Search(context,"Latin",Colors.orange,"R&B",Colors.yellow,"assets/images/album7.jpg","assets/images/album8.jpg"),
+                                cardSearch(context,"Latin",Colors.orange,"R&B",Colors.yellow,"assets/images/album7.jpg","assets/images/album8.jpg"),
                                 // SizedBox(height: 10,),
                                 // Card_Search(context,"Telugu",Colors.purple,"English",Colors.blueAccent,"assets/ser5.jfif","assets/ser6.jfif"),
                               ]
@@ -143,7 +143,7 @@ class _SearchViewState extends State<SearchView> {
       )
     );
   }
-  Widget Card_Search(BuildContext context, String text, final clrs,
+  Widget cardSearch(BuildContext context, String text, final clrs,
       String text2, final clrs2,
       String image1, String image2) {
     return GestureDetector(

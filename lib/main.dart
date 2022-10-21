@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
           unselectedItemColor: Colors.white38,
         ),
       ),
-      home: Tabbar(),
+      home: const Tabbar(),
     );
   }
 }

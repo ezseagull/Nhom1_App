@@ -9,7 +9,7 @@ class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
   @override
-  _HomeView createState() => _HomeView();
+  State<HomeView> createState() => _HomeView();
 }
 
 class _HomeView extends State<HomeView> {
@@ -216,7 +216,7 @@ class _HomeView extends State<HomeView> {
                               ),
                               child: Row(
                                 children: [
-                                  for (var i = 15; i < songData.data.length; i++)
+                                  for (var i = 18; i < songData.data.length; i++)
                                     SongCard(
                                       label: songData.data[i].album.title,
                                       image: Image.network(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/card/song_card.dart';
+import 'package:untitled/models/data.dart';
+import 'package:untitled/screen/songview.dart';
 import 'package:untitled/services/api.dart';
 import '../card/album_card.dart';
 import '../methods/get_greeting.dart';
@@ -376,38 +378,129 @@ class RowAlbumCard extends StatelessWidget {
 }
 
 //miniplayer
-// class PlayerHome extends StatefulWidget {
-//   @override
-//   _PlayerHomeState createState() => _PlayerHomeState();
-// }
+class PlayerHome extends StatefulWidget {
+  final Song? song;
+  final Image? image;
+  final String? songurl;
+  final String? lable;
+  final String? nameArtist;
+  const PlayerHome({Key? key,
+    this.song,
+    this.image,
+    this.songurl,
+    this.lable,
+    this.nameArtist}) : super(key: key);
 
-// class _PlayerHomeState extends State<PlayerHome> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return GestureDetector(
-//       // onTap: () {
-//       //   Navigator.push(
-//       //       context,
-//       //       PageRouteBuilder(
-//       //           pageBuilder: (context, _, __) => SongView(widget.song)));
-//       // },
-//       child: Container(
-//         height: 130,
-//         padding: EdgeInsets.all(8),
-//         decoration: BoxDecoration(
-//           color: Colors.black,
-//           borderRadius: BorderRadius.only(topRight: Radius.circular(30)),
-//         ),
-//         child: Column(
-//           children: [
-//             Row(
-//               children: [
-//                 Hero(tag: "image", child: child)
-//               ],
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  State<PlayerHome> createState() => _PlayerHomeState();
+}
+double currentSlider = 0;
+class _PlayerHomeState extends State<PlayerHome> {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(
+          builder: ((context) => SongView(
+            image: widget.image,
+            lable: widget.lable,
+            nameArtist: widget.nameArtist,
+            songurl: widget.songurl,
+          )),
+        ));
+      },
+      child: Container(
+        height: 130,
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.only(topRight: Radius.circular(30)),
+        ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Image(
+                  image: AssetImage("assets/images/album17.jpg"),
+                  height: 50,
+                  width: 50,
+                  fit: BoxFit.cover,
+                ),
+                const SizedBox(width: 8),
+                Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 5,),
+                        Text(
+                          widget.lable!,
+                          style: TextStyle(
+                            fontSize: 15,
+
+                          ),
+                        ),
+                        SizedBox(height: 5,),
+                        Text(
+                            widget.nameArtist!,
+                            style: TextStyle(
+                              // fontWeight: FontWeight.w200,
+                              color: Colors.white54,
+                            )
+                        ),
+                      ],
+                    )
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.pause, color: Colors.white, size: 30),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Icon(Icons.skip_next_outlined,
+                        color: Colors.white, size: 30),
+                    SizedBox(
+                      width: 10,
+                    ),
+                  ],
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width - 120,
+                  child: SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 4),
+                      trackShape: RectangularSliderTrackShape(),
+                      trackHeight: 4,
+                    ),
+                    child: Slider(
+                      value: currentSlider,
+                      // max: widget.song.duration.toDouble(),
+                      min: 0,
+                      inactiveColor: Colors.grey[500],
+                      activeColor: Colors.white,
+                      onChanged: (val) {
+                        setState(() {
+                          currentSlider = val;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

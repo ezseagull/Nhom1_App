@@ -11,10 +11,15 @@ class SearchView2 extends StatefulWidget {
 
 class _SearchView2State extends State<SearchView2> {
   TextEditingController searchController = TextEditingController();
-  List<int> isSongs = [];
 
   @override
   Widget build(BuildContext context) {
+    List<int> isSongs = [];
+    if (isSongs.isNotEmpty) {
+      print(isSongs[0]);
+    } else {
+      print('the list is empty');
+    }
     return Scaffold(
         body: FutureBuilder(
             future: API().getSongFromApi(),
@@ -65,6 +70,7 @@ class _SearchView2State extends State<SearchView2> {
                                         borderRadius: BorderRadius.circular(8.0),
                                       ),
                                       child: TextField(
+                                        key: Key('your-text-field'),
                                         controller: searchController,
                                         autofocus: true,
                                         style: const TextStyle(
@@ -87,6 +93,12 @@ class _SearchView2State extends State<SearchView2> {
                                         // },
                                         onChanged: (query) {
                                           List<int> d = [];
+                                          if (d.isNotEmpty) {
+                                            print(d[0]);
+                                          } else {
+                                            print('the list is empty');
+                                          }
+
                                           if (query.isNotEmpty) {
                                             for (var i = 0; i < songData.data.length; i++) {
                                               String a = songData.data[i].album.title.toLowerCase();
@@ -97,6 +109,11 @@ class _SearchView2State extends State<SearchView2> {
                                             }
                                           }
                                           setState(() {
+                                            if (isSongs.isNotEmpty) {
+                                              print(isSongs[0]);
+                                            } else {
+                                              print('the list is empty');
+                                            }
                                             isSongs = d;
                                           });
                                         },
@@ -127,6 +144,7 @@ class _SearchView2State extends State<SearchView2> {
                                   itemCount: isSongs.length,
                                   itemBuilder: (context, index) {
                                     return ListTile(
+                                      key: Key('result'),
                                       leading: Image.network(
                                         songData.data[isSongs[index]].album.coverBig,
                                         // songData.data[index].artist.pictureBig,

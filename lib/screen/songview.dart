@@ -171,7 +171,7 @@ class _SongViewState extends State<SongView> {
                           children: [
                             Container(
                               height: 35,
-                              width: 200,
+                              width: 300,
                               alignment: Alignment.topLeft,
                               child: Text(
                                   widget.lable!,
@@ -189,26 +189,8 @@ class _SongViewState extends State<SongView> {
                                 fontSize: 14.0,
                               ),
                             ),
-                            // Container(
-                            //   height: 50,
-                            //   width: 200,
-                            //   alignment: Alignment.topLeft,
-                            //   child: Text(
-                            //     widget.nameArtist!,
-                            //     style: TextStyle(
-                            //       fontSize: 14.0,
-                            //     ),
-                            //   ),
-                            // ),
                           ],
                         ),
-                        // IconButton(
-                        //   icon: Icon(
-                        //     Icons.favorite_border,
-                        //     size: 30.0,
-                        //   ),
-                        //   onPressed: () {},
-                        // ),
                       ],
                     ),
                   ),
@@ -271,18 +253,19 @@ class _SongViewState extends State<SongView> {
                                   isPlaying? Icons.pause : Icons.play_arrow,
                               ),
                               iconSize: 50,
+
                                 onPressed: () async {
-                                if (!isPlaying) {
-                                  player.play(UrlSource(widget.songurl.toString()));
-                                  setState(() {
-                                    playBtn = Icons.pause;
-                                    isPlaying = true;
-                                  });
-                                } else {
+                                if (isPlaying) {
                                   player.pause();
                                   setState(() {
                                     playBtn = Icons.play_arrow;
                                     isPlaying = false;
+                                  });
+                                } else {
+                                  player.play(UrlSource(widget.songurl.toString()));
+                                  setState(() {
+                                    playBtn = Icons.pause;
+                                    isPlaying = true;
                                   });
                                 }
                                 },

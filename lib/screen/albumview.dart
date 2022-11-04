@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/screen/home.dart';
+import 'package:untitled/screen/search.dart';
 import 'package:untitled/screen/songview.dart';
 import '../card/album_card.dart';
 import '../card/row_card.dart';
 import '../services/api.dart';
+import 'library.dart';
 
 class AlbumView extends StatefulWidget {
   final Image? image;
@@ -22,11 +25,61 @@ class AlbumView extends StatefulWidget {
 
 class _AlbumViewState extends State<AlbumView> {
   ScrollController? scrollController;
-
+  int selectedTab = 0;
+  int currentTabIndex = 0;
+  Widget renderView(int tabIndex, Widget view) {
+    return IgnorePointer(
+      ignoring: selectedTab != tabIndex,
+      child: Opacity(
+        opacity: selectedTab == tabIndex ? 1 : 0,
+        child: view,
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     final cardSize = MediaQuery.of(context).size.width / 2 - 32;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Text(widget.lable!,
+            style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white)),
+        centerTitle: true,
+      ),
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // miniSongPlayer(context),
+          BottomNavigationBar(
+            backgroundColor: Colors.transparent,
+            currentIndex: selectedTab,
+            onTap: (index) {
+              setState(() {
+                selectedTab = index;
+              });
+            },
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                ),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search_outlined),
+                label: "Search",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.library_music_outlined),
+                label: "Your Library",
+              ),
+            ],
+          ),
+        ],
+      ),
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -243,21 +296,8 @@ class _AlbumViewState extends State<AlbumView> {
               ],
             )
           ),
-          SafeArea(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                    icon: const Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }),
-              ],
-            ),
-          )
+          renderView(1, const SearchView()),
+          renderView(2, const LibraryView()),
         ],
       ),
     );

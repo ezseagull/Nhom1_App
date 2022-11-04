@@ -31,6 +31,7 @@ class AlbumCard extends StatelessWidget{
               next: next,
             ),
           ),
+
         );
       },
       child: Padding(

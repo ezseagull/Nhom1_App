@@ -6,6 +6,7 @@ class RowCard extends StatelessWidget{
   final String? label;
   final String? nameArtist;
   final String? songurl;
+  final int? index;
   final Function? onTap;
   final double size;
   const RowCard({
@@ -14,6 +15,7 @@ class RowCard extends StatelessWidget{
     this.label,
     this.nameArtist,
     this.songurl,
+    this.index,
     this.onTap,
     this.size = 50,
   }) : super(key: key);
@@ -27,6 +29,7 @@ class RowCard extends StatelessWidget{
             lable: label,
             nameArtist: nameArtist,
             songurl: songurl,
+            index: index,
           )),
         ));
       },

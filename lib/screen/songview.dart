@@ -4,19 +4,23 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/models/data.dart';
 
+import '../services/api.dart';
+
 class SongView extends StatefulWidget {
   final Song? song;
   final Image? image;
   final String? songurl;
   final String? lable;
   final String? nameArtist;
+  final int? index;
   // SongIn
   const SongView({Key? key,
     this.song,
     this.image,
     this.songurl,
     this.lable,
-    this.nameArtist}) : super(key: key);
+    this.nameArtist,
+    this.index}) : super(key: key);
 
   @override
   State<SongView> createState() => _SongViewState();
@@ -227,69 +231,137 @@ class _SongViewState extends State<SongView> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: InkWell(
-                              onTapDown: (details) {
-                                player.setPlaybackRate(0.5);
-                              },
-                              onTapUp: (details) {
-                                player.setPlaybackRate(1);
-                              },
-                              child: const Center(
-                                child: Icon(
-                                    Icons.skip_previous,
-                                    size: 60.0,
-                                  ),
-                              ),
-                            ),
-                          ),
-                          CircleAvatar(
-                            radius: 40,
-                            backgroundColor: Colors.white,
-                            child: IconButton(
-                              icon: Icon(
-                                  isPlaying? Icons.pause : Icons.play_arrow,
-                              ),
-                              iconSize: 50,
-
-                                onPressed: () async {
-                                if (isPlaying) {
-                                  player.pause();
-                                  setState(() {
-                                    playBtn = Icons.play_arrow;
-                                    isPlaying = false;
-                                  });
+                          Container(
+                            width: 80.0,
+                            height: 80.0,
+                            child: FutureBuilder(
+                              future: API().getSongFromApi(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasError) {
+                                  return Center(
+                                    child: Text(snapshot.error.toString()),
+                                  );
                                 } else {
-                                  player.play(UrlSource(widget.songurl.toString()));
-                                  setState(() {
-                                    playBtn = Icons.pause;
-                                    isPlaying = true;
-                                  });
+                                  final dynamic songData = snapshot.data;
+                                  return Center(
+                                    child: IconButton(
+                                      icon: Icon(
+                                        Icons.skip_previous,
+                                        color: Colors.white,
+                                        size: 60.0,
+                                      ),
+                                      onPressed: () {
+                                        player.pause();
+                                        setState(() {
+                                          playBtn = Icons.play_arrow;
+                                          isPlaying = false;
+                                        });
+                                        int i = 0;
+                                        if (widget.index! == 1 || widget.index! == 0) {
+                                          i = 11;
+                                        } else {
+                                          i = widget.index! - 1;
+                                        }
+                                        Navigator.push(context, MaterialPageRoute(
+                                          builder: ((context) => SongView(
+                                            lable: songData.data[i].album.title,
+                                            image: Image.network(
+                                              songData.data[i].artist.pictureXl,
+                                            ),
+                                            songurl: songData.data[i].preview,
+                                            nameArtist: songData.data[i].artist.name,
+                                            index: i,
+                                          )),
+                                        ));
+                                      },
+                                    ),
+                                  );
                                 }
-                                },
-                            ),
+                              },
+                            )
                           ),
-                          SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: InkWell(
-                              onTapDown: (details) {
-                                player.setPlaybackRate(2);
-                              },
-                              onTapUp: (details) {
-                                player.setPlaybackRate(1);
-                              },
-                              child: const Center(
-                                child: Icon(
-                                  Icons.skip_next,
-                                  color: Colors.white,
-                                  size: 60.0,
+                          const SizedBox(width: 1.0,),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const SizedBox(height: 23.0,),
+                              CircleAvatar(
+                                radius: 40,
+                                backgroundColor: Colors.white,
+                                child: IconButton(
+                                  icon: Icon(
+                                      isPlaying? Icons.pause : Icons.play_arrow,
+                                  ),
+                                  iconSize: 50,
+                                  onPressed: () async {
+                                    if (isPlaying) {
+                                      player.pause();
+                                      setState(() {
+                                        playBtn = Icons.play_arrow;
+                                        isPlaying = false;
+                                      });
+                                    } else {
+                                      player.play(UrlSource(widget.songurl.toString()));
+                                      setState(() {
+                                        playBtn = Icons.pause;
+                                        isPlaying = true;
+                                      });
+                                    }
+                                  },
                                 ),
                               ),
-                            ),
-                          )
+                            ],
+                          ),
+                          Container(
+                            width: 80.0,
+                            height: 80.0,
+                            child: FutureBuilder(
+                              future: API().getSongFromApi(),
+                              builder: (context, snapshot) { 
+                                if (snapshot.hasError) {
+                                  return Center(
+                                    child: Text(snapshot.error.toString()),
+                                  );
+                                } else {
+                                  final dynamic songData = snapshot.data;
+                                  return Center(
+                                    child: IconButton(
+                                      icon: Icon(
+                                        Icons.skip_next,
+                                        color: Colors.white,
+                                        size: 60.0,
+                                      ),
+                                      onPressed: () {
+                                        player.pause();
+                                        setState(() {
+                                          playBtn = Icons.play_arrow;
+                                          isPlaying = false;
+                                        });
+                                        int i = 0;
+                                        if (widget.index! < 11) {
+                                          i = widget.index! + 1;
+                                        } else {
+                                          i = 1;
+                                        }
+                                        Navigator.push(context, MaterialPageRoute(
+                                          builder: ((context) => SongView(
+                                            lable: songData.data[i].album.title,
+                                            image: Image.network(
+                                              songData.data[i].artist.pictureXl,
+                                            ),
+                                            songurl: songData.data[i].preview,
+                                            nameArtist: songData.data[i].artist.name,
+                                            index: i,
+                                          )),
+                                        ));
+                                      },
+                                    ),
+                                  );
+                                }
+                              },
+                            )
+                          ),
+                          const SizedBox(width: 1.0,),
                         ],
                       )
                     ],
@@ -299,7 +371,7 @@ class _SongViewState extends State<SongView> {
             ),
           ),
         ],
-      ),
+      )
     );
   }
 }

@@ -213,6 +213,7 @@ class _AlbumViewState extends State<AlbumView> {
                                                           ),
                                                           songurl: songData.data[i].preview,
                                                           nameArtist: songData.data[i].artist.name,
+                                                          index: i,
                                                         ),
                                                     ],
                                                   );

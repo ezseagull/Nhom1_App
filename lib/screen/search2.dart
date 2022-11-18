@@ -11,10 +11,11 @@ class SearchView2 extends StatefulWidget {
 
 class _SearchView2State extends State<SearchView2> {
   TextEditingController searchController = TextEditingController();
+  List<int> isSongs = [];
 
   @override
   Widget build(BuildContext context) {
-    List<int> isSongs = [];
+    // List<int> isSongs = [];
     if (isSongs.isNotEmpty) {
       print(isSongs[0]);
     } else {
@@ -23,12 +24,8 @@ class _SearchView2State extends State<SearchView2> {
     return Scaffold(
         body: FutureBuilder(
             future: API().getSongFromApi(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (snapshot.hasError) {
+            builder: (context, snapshot) { 
+              if (snapshot.hasError) {
                 return Center(
                   child: Text(snapshot.error.toString()),
                 );
@@ -160,6 +157,7 @@ class _SearchView2State extends State<SearchView2> {
                                             ),
                                             songurl: songData.data[isSongs[index]].preview,
                                             nameArtist: songData.data[isSongs[index]].artist.name,
+                                            index: isSongs[index],
                                           )),
                                         ));
                                       },

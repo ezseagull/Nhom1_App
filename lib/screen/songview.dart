@@ -103,19 +103,22 @@ class _SongViewState extends State<SongView> {
             //     fit: BoxFit.cover,
             //   ),
             // ),
-            child: Expanded(
-              child: Column(
-                children: [
-                  Expanded(flex: 10,child: widget.image!),
-                  BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 28, sigmaY: 28),
-                    child: Container(
-                      color: Colors.black.withOpacity(0.6),
-                    ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      Expanded(flex: 10,child: widget.image ?? Image.asset("assets/images/library_icon.png")),
+                      BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 28, sigmaY: 28),
+                        child: Container(
+                          color: Colors.black.withOpacity(0.6),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            )
+                )
+              ]),
           ),
           SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -178,7 +181,7 @@ class _SongViewState extends State<SongView> {
                               width: 300,
                               alignment: Alignment.topLeft,
                               child: Text(
-                                  widget.lable!,
+                                  widget.lable ?? "",
                                 style: const TextStyle(
                                       fontSize: 20.0,
 
@@ -188,7 +191,7 @@ class _SongViewState extends State<SongView> {
                               ),
                             ),
                             Text(
-                              widget.nameArtist!,
+                              widget.nameArtist ?? "",
                               style: const TextStyle(
                                 fontSize: 14.0,
                               ),

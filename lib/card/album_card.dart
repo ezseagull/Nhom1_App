@@ -42,10 +42,10 @@ class AlbumCard extends StatelessWidget{
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              image!,
+              image ?? Image.asset("assets/images/logo.png"),
               const SizedBox(height: 10),
               Text(
-                label!,
+                label ?? "",
                 // style: ,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,

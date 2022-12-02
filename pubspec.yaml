@@ -49,6 +49,7 @@ dependencies:
   audioplayers: ^1.1.1
   flutter_riverpod: ^2.0.2
 dev_dependencies:
+  test_coverage: ^0.4.2
   integration_test:
     sdk: flutter
   flutter_test:

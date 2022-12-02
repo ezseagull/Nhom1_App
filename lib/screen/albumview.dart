@@ -42,7 +42,7 @@ class _AlbumViewState extends State<AlbumView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Text(widget.lable!,
+        title: Text(widget.lable ?? "",
             style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -102,7 +102,7 @@ class _AlbumViewState extends State<AlbumView> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(widget.lable!,
+                      Text(widget.lable ?? "",
                           style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,

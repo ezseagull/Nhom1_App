@@ -40,18 +40,18 @@ class RowCard extends StatelessWidget{
             height: size,
             child: Row(
               children: [
-                image!,
+                image ?? Image.asset("assets/images/logo.png"),
                 const SizedBox(width: 10,),
                 Container(
                     padding: const EdgeInsets.all(5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(label!, maxLines: 3,),
+                        Text(label ?? "", maxLines: 3,),
                         Text(
                             textAlign: TextAlign.left,
                             textDirection: TextDirection.ltr,
-                            nameArtist!,
+                            nameArtist ?? "",
                             style: const TextStyle(
                               // fontWeight: FontWeight.w200,
                               color: Colors.white54,

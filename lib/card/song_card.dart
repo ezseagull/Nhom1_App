@@ -40,10 +40,10 @@ class SongCard extends StatelessWidget{
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              image!,
+              image ?? Image.asset("assets/images/library_icon.png"),
               const SizedBox(height: 10),
               Text(
-                label!,
+                label ?? "",
                 style: const TextStyle(
                   // fontWeight: FontWeight.w200,
                   color: Colors.white54,
